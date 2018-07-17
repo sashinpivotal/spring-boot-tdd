@@ -22,4 +22,8 @@ public class CarService {
          }
          return car;
     }
+
+    public Car addCar(Car car) {
+        return carRepository.save(car);
+    }
 }

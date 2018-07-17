@@ -6,9 +6,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.verify;
 
 //@RunWith(SpringRunner.class)
@@ -23,6 +23,9 @@ public class CarServiceTests {
     @Mock
     private CarRepository carRepository;
 
+//    You could use @InjectMocks instead of setUp() method
+//    @InjectMocks
+//    private CarService carService;
     @Before
     public void setUp() throws Exception {
         carService = new CarService(carRepository);
@@ -31,23 +34,32 @@ public class CarServiceTests {
     @Test
     public void getCarDetails_should_return_car_details_given_correct_car_name() throws Exception {
 
+        // arrange
         given(carRepository.findByName(anyString())).willReturn(new Car("prius", "hybrid"));
 
+        // act and assert
         Car prius = carService.getCarDetails("prius");
         assertThat(prius.getName()).isEqualTo("prius");
         assertThat(prius.getType()).isEqualTo("hybrid");
 
+        // verify
         verify(carRepository).findByName(anyString());
     }
 
     @Test(expected = CarNotFoundException.class)
-    public void getCarDetails_should_return_CarNotFoundException_given_worng_car_name() throws Exception {
+    public void getCarDetails_should_return_CarNotFoundException_given_wrong_car_name() throws Exception {
 
+        // arrange
         given(carRepository.findByName(anyString())).willReturn(null);
 
-        carService.getCarDetails("prius");
-
-        verify(carRepository).findByName(anyString());
+        // act and assert
+        try {
+            carService.getCarDetails("prius");
+        }
+        finally {
+            // verify
+            verify(carRepository).findByName(anyString());
+        }
     }
 
 }
