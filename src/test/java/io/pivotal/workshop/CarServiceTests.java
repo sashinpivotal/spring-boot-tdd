@@ -54,7 +54,7 @@ public class CarServiceTests {
 
         // act and assert
         try {
-            carService.getCarDetails("prius");
+            carService.getCarDetails("invalid");
         }
         finally {
             // verify
