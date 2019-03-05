@@ -56,6 +56,23 @@ This is based on the [Test-Driven Development with Spring Boot talk given in Spr
     (using Spring testing framework) and then replace it with 
     `@RunWith(MockitoJUnitRunner.class)` and think about which one is 
     a better practice
+    
+### Trouble-shooting
+
+-   If you experience the following error, it is because you have not
+    handle the case where CarRepository's findByCar(..) method
+    returns null.
+    
+
+    ```
+    java.lang.AssertionError: Expected exception: com.example.demotdd5.CarNotFoundException
+
+	...
+    org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+    ```
 
 ## Write JPA Repository slice unit testing
 
