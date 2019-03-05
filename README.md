@@ -88,6 +88,29 @@ This is based on the [Test-Driven Development with Spring Boot talk given in Spr
     
 -   Use `@DataJpaTest` annotation, which provides `TestEntityManager`
 
+### Trouble-shooting
+
+-   When your test fails below fails with
+     `org.springframework.orm.jpa.JpaSystemException: No default constructor for entity: ..`, it means your `Car` class does not have a default constructor
+     
+
+    ```
+        @Test
+        public void findByName_should_return_car_given_valid_car() 
+                  throws Exception {
+
+        // arrange
+        testEntityManager.persistAndFlush(new Car("camry", "regular"));
+        testEntityManager.clear();
+
+        // act and assert
+        Car car = carRepository.findByName("camry");
+        assertThat(car).isEqualTo(new Car("camry", "regular"));
+
+        // verify
+    }
+    ```
+
 ## Write Service slice caching testing
 
 ### Functionality to be tested
