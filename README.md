@@ -140,13 +140,3 @@ This is based on the [Test-Driven Development with Spring Boot talk given in Spr
 -   Use `@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)`
 -   Observe how much this test takes, also observe that this test starts Tomcat
     
-## Use Junit 5
-
-### Functionality to be done
-
--   If you write the test code in JUnit 4, replace some of those
-    using JUnit 5
-    
-### Tips
-
--   Spring Boot test starter already supports JUnit 5
