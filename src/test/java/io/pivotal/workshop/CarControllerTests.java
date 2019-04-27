@@ -47,11 +47,14 @@ public class CarControllerTests {
 
     @Test
     public void getCar_should_return_http_404_given_invalid_car_name() throws Exception {
+        // arrange
         given(carService.getCarDetails(anyString())).willThrow(new CarNotFoundException());
 
+        // act & assert
         mockMvc.perform(get("/cars/bogus"))
                .andExpect(status().isNotFound());
 
+        // verify
         verify(carService).getCarDetails("bogus");
     }
 
