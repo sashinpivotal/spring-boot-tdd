@@ -116,7 +116,7 @@ This is based on the [Test-Driven Development with Spring Boot talk given in Spr
 ### Functionality to be tested
 
 -   The `CarService's` `getCarDetails(..)` method should return an item
-    from a cache
+    from a cache if it gets called more than once
 
 ### Tips
 
