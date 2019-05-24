@@ -53,14 +53,14 @@ This is based on the [Test-Driven Development with Spring Boot talk given in Spr
     object
     
 -   Start with testing with Spring using `@RunWith(SpringRunner.class)`
-    (using Spring testing framework) and then replace it with 
+    (using Spring testing framework) and then refactor it with 
     `@RunWith(MockitoJUnitRunner.class)` and think about which one is 
     a better practice
     
 ### Trouble-shooting
 
 -   If you experience the following error, it is because you have not
-    handle the case where CarRepository's findByCar(..) method
+    handle the case where CarRepository's findByName(..) method
     returns null.
     
 
