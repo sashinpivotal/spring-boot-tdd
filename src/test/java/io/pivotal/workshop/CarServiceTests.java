@@ -1,19 +1,21 @@
 package io.pivotal.workshop;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.verify;
 
-//@RunWith(SpringRunner.class)
+//@ExtendWith(SpringExtension.class)
 //@ContextConfiguration(classes={SpringBootTddApplication.class})
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class CarServiceTests {
 
 //    @Autowired
@@ -26,7 +28,7 @@ public class CarServiceTests {
 //    You could use @InjectMocks instead of setUp() method
 //    @InjectMocks
 //    private CarService carService;
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         carService = new CarService(carRepository);
     }
@@ -46,20 +48,40 @@ public class CarServiceTests {
         verify(carRepository).findByName(anyString());
     }
 
-    @Test(expected = CarNotFoundException.class)
-    public void getCarDetails_should_return_CarNotFoundException_given_wrong_car_name() throws Exception {
+//    @Test(expected = CarNotFoundException.class)
+//    public void getCarDetails_should_return_CarNotFoundException_given_wrong_car_name() throws Exception {
+//
+//        // arrange
+//        given(carRepository.findByName(anyString())).willReturn(null);
+//
+//        // act and assert
+//        try {
+//            carService.getCarDetails("invalid");
+//        }
+//        finally {
+//            // verify
+//            verify(carRepository).findByName(anyString());
+//        }
+//    }
+
+    @Test
+    public void getCarDetails_should_return_CarNotFoundException_given_wrong_car_name_junit5() throws Exception {
 
         // arrange
         given(carRepository.findByName(anyString())).willReturn(null);
 
         // act and assert
-        try {
-            carService.getCarDetails("invalid");
-        }
-        finally {
-            // verify
-            verify(carRepository).findByName(anyString());
-        }
+        Assertions.assertThrows(CarNotFoundException.class, ()->{
+            // act and assert
+            try {
+                carService.getCarDetails("invalid");
+            }
+            finally {
+                // verify
+                verify(carRepository).findByName(anyString());
+            }
+        });
+
     }
 
 }
