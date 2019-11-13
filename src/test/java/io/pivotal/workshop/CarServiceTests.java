@@ -1,7 +1,6 @@
 package io.pivotal.workshop;
 
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.verify;
@@ -71,7 +71,7 @@ public class CarServiceTests {
         given(carRepository.findByName(anyString())).willReturn(null);
 
         // act and assert
-        Assertions.assertThrows(CarNotFoundException.class, ()->{
+        assertThrows(CarNotFoundException.class, ()->{
             // act and assert
             try {
                 carService.getCarDetails("invalid");
