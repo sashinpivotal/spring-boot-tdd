@@ -62,7 +62,7 @@ public class CarControllerTests {
         Car car = new Car("test", "test");
 
         mockMvc.perform(post("/cars")
-               .contentType(MediaType.APPLICATION_JSON_UTF8)
+               .contentType(MediaType.APPLICATION_JSON)
                .content(asJsonString(car))
                .accept(MediaType.APPLICATION_JSON))
                .andExpect(status().isCreated());

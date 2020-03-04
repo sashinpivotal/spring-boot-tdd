@@ -48,6 +48,8 @@ public class CarServiceTests {
         verify(carRepository).findByName(anyString());
     }
 
+
+/////  JUNit 4 ////////////
 //    @Test(expected = CarNotFoundException.class)
 //    public void getCarDetails_should_return_CarNotFoundException_given_wrong_car_name() throws Exception {
 //
