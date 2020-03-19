@@ -13,7 +13,6 @@ import static org.mockito.Mockito.verify;
 
 // In order to use Spring caching, we need Spring context
 @ExtendWith(SpringExtension.class)
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ContextConfiguration(classes={SpringBootTddApplication.class})
 public class CarServiceCachingTests {
 
@@ -24,13 +23,13 @@ public class CarServiceCachingTests {
     private CarRepository carRepository;
 
     @Test
-    public void getCarDetails_caching_should_return_cached_item() throws Exception {
+    public void getCarDetails_should_use_caching_when_called_twice() throws Exception {
 
-        given(carRepository.findByName("prius")).willReturn(new Car("prius", "hybrid"));
+        given(carRepository.findByName(anyString())).willReturn(new Car("prius", "hybrid"));
 
         carService.getCarDetails("prius");
         carService.getCarDetails("prius");
 
-        verify(carRepository, times(1)).findByName("prius");
+        verify(carRepository, times(1)).findByName(anyString());
     }
 }
