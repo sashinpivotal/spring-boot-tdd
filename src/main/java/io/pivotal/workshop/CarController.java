@@ -23,7 +23,13 @@ public class CarController {
     @GetMapping("/{name}")
     public Car getCar(@PathVariable String name){
 
-        return carService.getCarDetails(name);
+        Car car = carService.getCarDetails(name);
+
+        // businesss logic we want to test
+        car.setName(car.getName() +"1");
+
+        return car;
+
     }
 
     @PostMapping

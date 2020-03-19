@@ -18,14 +18,14 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class CarServiceTests {
 
-//    @Autowired
+    //    @Autowired
     private CarService carService;
 
-//    @MockBean
+    //    @MockBean
     @Mock
     private CarRepository carRepository;
 
-//    You could use @InjectMocks instead of setUp() method
+    //    You could use @InjectMocks instead of setUp() method
 //    @InjectMocks
 //    private CarService carService;
     @BeforeEach
@@ -42,7 +42,7 @@ public class CarServiceTests {
         // act and assert
         Car prius = carService.getCarDetails("prius");
         assertThat(prius.getName()).isEqualTo("prius");
-        assertThat(prius.getType()).isEqualTo("hybrid");
+        assertThat(prius.getType()).isEqualTo("hybrid1");
 
         // verify
         verify(carRepository).findByName(anyString());
@@ -73,17 +73,12 @@ public class CarServiceTests {
         given(carRepository.findByName(anyString())).willReturn(null);
 
         // act and assert
-        assertThrows(CarNotFoundException.class, ()->{
-            // act and assert
-            try {
-                carService.getCarDetails("invalid");
-            }
-            finally {
-                // verify
-                verify(carRepository).findByName(anyString());
-            }
+        assertThrows(CarNotFoundException.class, () -> {
+            carService.getCarDetails("invalid");
         });
 
+        // verify
+        verify(carRepository).findByName(anyString());
     }
 
 }

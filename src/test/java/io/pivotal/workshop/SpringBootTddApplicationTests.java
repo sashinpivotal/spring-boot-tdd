@@ -33,8 +33,8 @@ public class SpringBootTddApplicationTests {
 		ResponseEntity<Car> carResponseEntity = testRestTemplate.getForEntity("/cars/prius", Car.class);
 		assertThat(carResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(carResponseEntity.getHeaders().getContentType()).isEqualTo(MediaType.APPLICATION_JSON);
-		assertThat(carResponseEntity.getBody().getName()).isEqualTo("prius");
-		assertThat(carResponseEntity.getBody().getType()).isEqualTo("hybrid");
+		assertThat(carResponseEntity.getBody().getName()).isEqualTo("prius1");
+		assertThat(carResponseEntity.getBody().getType()).isEqualTo("hybrid1");
 	}
 
 	@Test

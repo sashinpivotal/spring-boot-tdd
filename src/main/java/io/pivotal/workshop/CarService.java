@@ -20,6 +20,10 @@ public class CarService {
          if (car == null){
              throw new CarNotFoundException();
          }
+
+         // business logic we want to unit-test
+         car.setType(car.getType() + "1");
+
          return car;
     }
 
