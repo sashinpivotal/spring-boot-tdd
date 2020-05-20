@@ -8,7 +8,7 @@ This is based on the [Test-Driven Development with Spring Boot talk given in Spr
 
 -   Start a new "Web" Spring Boot project from [Spring Boot Initialzr](http://start.spring.io/)
     
-## Write MVC slice unit testing
+## Write MVC slice testing
 
 ### Functionality to be tested
 
@@ -34,7 +34,7 @@ This is based on the [Test-Driven Development with Spring Boot talk given in Spr
     
 -   Observe how much time this test takes and see if Tomcat gets started or not
 
-## Write Service slice unit testing
+## Write Service slice testing
 
 ### Functionality to be tested
 
@@ -74,7 +74,7 @@ This is based on the [Test-Driven Development with Spring Boot talk given in Spr
 	at org.h2.message.DbException.get(DbException.java:155)
     ```
 
-## Write JPA Repository slice unit testing
+## Write JPA Repository slice testing
 
 ### Functionality to be tested
 
@@ -111,7 +111,7 @@ This is based on the [Test-Driven Development with Spring Boot talk given in Spr
     }
     ```
 
-## Write Service slice caching testing
+## Write Service caching slice testing
 
 ### Functionality to be tested
 
