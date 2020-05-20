@@ -24,7 +24,7 @@ public class CarRepositoryTests {
 
         // act and assert
         Car car = carRepository.findByName("camry");
-        assertThat(car).isEqualTo(new Car("camry", "regular"));
+        assertThat(car).isEqualTo(new Car(1L,"camry", "regular"));
 
         // verify
     }

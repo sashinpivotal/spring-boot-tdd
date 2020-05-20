@@ -25,11 +25,14 @@ public class CarServiceCachingTests {
     @Test
     public void getCarDetails_should_use_caching_when_called_twice() throws Exception {
 
+        // arrange
         given(carRepository.findByName(anyString())).willReturn(new Car("prius", "hybrid"));
 
+        // act and assert
         carService.getCarDetails("prius");
         carService.getCarDetails("prius");
 
+        // verify
         verify(carRepository, times(1)).findByName(anyString());
     }
 }
