@@ -57,8 +57,10 @@ public class CarControllerTests {
 
     @Test
     public void addCar_should_return_http_201_given_a_car() throws Exception {
+        // arrange
         given(carService.addCar(new Car("test", "test"))).willReturn(new Car("test", "test"));
 
+        // act and assert
         Car car = new Car("test", "test");
 
         mockMvc.perform(post("/cars")
@@ -67,6 +69,7 @@ public class CarControllerTests {
                .accept(MediaType.APPLICATION_JSON))
                .andExpect(status().isCreated());
 
+        // verify
         verify(carService).addCar(new Car("test", "test"));
     }
 
