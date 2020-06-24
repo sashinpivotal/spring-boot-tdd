@@ -32,3 +32,7 @@ out/
 /.nb-gradle/
 ### VS Code ###
 .vscode/
+.gradle/6.0.1/vcsMetadata-1/
+.gradle/6.4.1/
+.gradle/6.5/
+.gradle/checksums/
