@@ -74,4 +74,17 @@ public class CarServiceTests {
         verify(carRepository).findByName(anyString());
     }
 
+    @Test
+    void addCar_should_return_the_same_Car_given_valid_Car_to_add() {
+
+        // arrange
+        given(carRepository.save(new Car("prius", "hybrid"))).willReturn(new Car("prius", "hybrid"));
+
+        // act and assert
+        Car car = carService.addCar(new Car("prius", "hybrid"));
+        assertThat(car).isEqualTo(car);
+
+        // verify
+        verify(carRepository).save(new Car("prius", "hybrid"));
+    }
 }
