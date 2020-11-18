@@ -21,7 +21,7 @@ public class CarService {
              throw new CarNotFoundException();
          }
 
-         // business logic we want to unit-test
+         // Dummy business logic we want to unit-test
          car.setType(car.getType() + "1");
 
          return car;
