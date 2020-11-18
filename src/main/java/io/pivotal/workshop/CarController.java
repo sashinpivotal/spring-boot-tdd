@@ -25,7 +25,7 @@ public class CarController {
 
         Car car = carService.getCarDetails(name);
 
-        // businesss logic we want to test
+        // business logic we want to test
         car.setName(car.getName() +"1");
 
         return car;
