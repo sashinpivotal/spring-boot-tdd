@@ -39,24 +39,6 @@ public class CarServiceUsingSpringContextTests {
         verify(carRepository).findByName(anyString());
     }
 
-
-/////  JUNit 4 ////////////
-//    @Test(expected = CarNotFoundException.class)
-//    public void getCarDetails_should_return_CarNotFoundException_given_wrong_car_name() throws Exception {
-//
-//        // arrange
-//        given(carRepository.findByName(anyString())).willReturn(null);
-//
-//        // act and assert
-//        try {
-//            carService.getCarDetails("invalid");
-//        }
-//        finally {
-//            // verify
-//            verify(carRepository).findByName(anyString());
-//        }
-//    }
-
     @Test
     public void getCarDetails_should_return_CarNotFoundException_given_wrong_car_name_junit5() throws Exception {
 

@@ -44,6 +44,7 @@ public class CarControllerTests {
 
     @Test
     public void getCar_should_return_http_404_given_invalid_car_name() throws Exception {
+
         // arrange
         given(carService.getCarDetails(anyString())).willThrow(new CarNotFoundException());
 
@@ -57,6 +58,7 @@ public class CarControllerTests {
 
     @Test
     public void addCar_should_return_http_201_given_a_car() throws Exception {
+
         // arrange
         given(carService.addCar(new Car("test", "test"))).willReturn(new Car("test", "test"));
 

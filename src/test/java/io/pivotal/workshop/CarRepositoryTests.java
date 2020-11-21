@@ -18,6 +18,7 @@ public class CarRepositoryTests {
 
     @Test
     public void findByName_should_return_car_given_valid_car() throws Exception {
+
         // arrange
         testEntityManager.persistAndFlush(new Car("camry", "regular"));
         testEntityManager.clear();

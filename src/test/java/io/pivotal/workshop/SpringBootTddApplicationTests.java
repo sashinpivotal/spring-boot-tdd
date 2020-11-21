@@ -18,14 +18,14 @@ public class SpringBootTddApplicationTests {
 	private TestRestTemplate testRestTemplate;
 
 	@Test
-	public void should_return_201_and_location_field_when_car_is_posted() throws Exception {
+	public void getCar_should_return_201_and_location_field_when_car_is_posted() throws Exception {
 		ResponseEntity<Car> carResponseEntity = testRestTemplate.postForEntity("/cars", new Car("prius", "hybrid"), Car.class);
 		assertThat(carResponseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 		assertThat(carResponseEntity.getHeaders().getLocation()).hasPath("/cars/prius");
 	}
 
 	@Test
-	public void should_return_http_response_200_given_existing_car() throws Exception {
+	public void getCar_should_return_http_200_given_valid_url() throws Exception {
 
 		// Add a test car before testing
 		testRestTemplate.postForEntity("/cars", new Car("prius", "hybrid"), Car.class);
@@ -38,7 +38,7 @@ public class SpringBootTddApplicationTests {
 	}
 
 	@Test
-	public void should_return_http_response_404_with_non_existent_car() throws Exception {
+	public void getCar_should_return_http_404_given_invalid_url() throws Exception {
 
 		ResponseEntity<Car> carResponseEntity = testRestTemplate.getForEntity("/cars/junk", Car.class);
 		assertThat(carResponseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
