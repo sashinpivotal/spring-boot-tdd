@@ -25,7 +25,7 @@ public class CarController {
 
         Car car = carService.getCarDetails(name);
 
-        // Dummy business logic we want to unit-test
+        // Dummy controller logic we want to unit-test
         car.setName(car.getName() +"1");
 
         return car;
@@ -36,7 +36,7 @@ public class CarController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Void> addCar(@RequestBody Car car) {
 
-        carService.addCar(car);
+        carService.addCarDetails(car);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
                                              .path("/{id}")

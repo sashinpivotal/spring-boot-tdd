@@ -1,12 +1,11 @@
 package io.pivotal.workshop;
 
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -14,15 +13,18 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.verify;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {SpringBootTddApplication.class})
-public class CarServiceUsingSpringContextTests {
+@ExtendWith(MockitoExtension.class)
+public class CarServiceUnitTests {
 
-    @Autowired
     private CarService carService;
 
-    @MockBean
+    @Mock
     private CarRepository carRepository;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        carService = new CarService(carRepository);
+    }
 
     @Test
     public void getCarDetails_should_return_car_details_given_correct_car_name() throws Exception {
@@ -54,4 +56,17 @@ public class CarServiceUsingSpringContextTests {
         verify(carRepository).findByName(anyString());
     }
 
+    @Test
+    void addCar_should_return_the_same_Car_given_valid_Car_to_add() {
+
+        // arrange
+        given(carRepository.save(new Car("prius", "hybrid"))).willReturn(new Car("prius", "hybrid"));
+
+        // act and assert
+        Car car = carService.addCarDetails(new Car("prius", "hybrid"));
+        assertThat(car).isEqualTo(car);
+
+        // verify
+        verify(carRepository).save(new Car("prius", "hybrid"));
+    }
 }

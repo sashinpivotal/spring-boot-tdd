@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import static org.assertj.core.api.Assertions.*;
 
 @DataJpaTest
-public class CarRepositoryTests {
+public class CarRepositorySliceTests {
 
     @Autowired
     private CarRepository carRepository;
