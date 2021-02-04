@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 public class CarServiceCachingSliceTests {
 
     @Autowired
-    private CarService carService;
+    private CarServiceCache carService;
 
     @Autowired
     private CacheManager cacheManager;

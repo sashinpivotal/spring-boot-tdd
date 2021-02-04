@@ -1,18 +1,24 @@
 package io.pivotal.workshop;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
+@Configuration
+@EnableCaching
 @Service
-public class CarService {
+public class CarServiceCache {
 
     private CarRepository carRepository;
 
     @Autowired
-    public CarService(CarRepository carRepository) {
+    public CarServiceCache(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
 
+    @Cacheable("car-cache")
     public Car getCarDetails(String name) {
          Car car = carRepository.findByName(name);
          if (car == null){
