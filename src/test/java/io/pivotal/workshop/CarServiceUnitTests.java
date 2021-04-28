@@ -7,14 +7,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.BDDMockito.*;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class CarServiceTests {
+public class CarServiceUnitTests {
 
     private CarService carService;
 
@@ -63,7 +63,7 @@ public class CarServiceTests {
         given(carRepository.save(new Car("prius", "hybrid"))).willReturn(new Car("prius", "hybrid"));
 
         // act and assert
-        Car car = carService.addCar(new Car("prius", "hybrid"));
+        Car car = carService.addCarDetails(new Car("prius", "hybrid"));
         assertThat(car).isEqualTo(car);
 
         // verify

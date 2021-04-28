@@ -9,23 +9,24 @@ import org.springframework.cache.CacheManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.mockito.BDDMockito.*;
+import static org.mockito.BDDMockito.anyString;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 // In order to use Spring caching, we need Spring context
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes={SpringBootTddApplication.class})
-public class CarServiceCachingTests {
+public class CarServiceCachingSliceTests {
 
     @Autowired
-    private CarService carService;
-
-    @MockBean
-    private CarRepository carRepository;
+    private CarServiceCache carService;
 
     @Autowired
     private CacheManager cacheManager;
+
+    @MockBean
+    private CarRepository carRepository;
 
     @BeforeEach
     void setUp() {

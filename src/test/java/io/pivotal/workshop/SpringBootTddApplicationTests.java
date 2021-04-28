@@ -9,20 +9,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SpringBootTddApplicationTests {
 
 	@Autowired
 	private TestRestTemplate testRestTemplate;
-
-	@Test
-	public void getCar_should_return_201_and_location_field_when_car_is_posted() throws Exception {
-		ResponseEntity<Car> carResponseEntity = testRestTemplate.postForEntity("/cars", new Car("prius", "hybrid"), Car.class);
-		assertThat(carResponseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-		assertThat(carResponseEntity.getHeaders().getLocation()).hasPath("/cars/prius");
-	}
 
 	@Test
 	public void getCar_should_return_http_200_given_valid_url() throws Exception {
@@ -42,5 +35,12 @@ public class SpringBootTddApplicationTests {
 
 		ResponseEntity<Car> carResponseEntity = testRestTemplate.getForEntity("/cars/junk", Car.class);
 		assertThat(carResponseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+	}
+
+	@Test
+	public void addCar_should_return_201_and_location_field_when_car_is_posted() throws Exception {
+		ResponseEntity<Car> carResponseEntity = testRestTemplate.postForEntity("/cars", new Car("audi", "regular"), Car.class);
+		assertThat(carResponseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+		assertThat(carResponseEntity.getHeaders().getLocation()).hasPath("/cars/audi");
 	}
 }

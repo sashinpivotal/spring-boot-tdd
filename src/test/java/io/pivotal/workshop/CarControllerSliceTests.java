@@ -9,7 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.BDDMockito.*;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CarController.class)
-public class CarControllerTests {
+public class CarControllerSliceTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -39,7 +39,7 @@ public class CarControllerTests {
                .andExpect(jsonPath("type").value("hybrid"));
 
         // verify that dependency is invoked
-        verify(carService, times(1)).getCarDetails("hyundai");
+        verify(carService, times(1)).getCarDetails(anyString());
     }
 
     @Test
@@ -53,14 +53,14 @@ public class CarControllerTests {
                .andExpect(status().isNotFound());
 
         // verify
-        verify(carService).getCarDetails("bogus");
+        verify(carService).getCarDetails(anyString());
     }
 
     @Test
     public void addCar_should_return_http_201_given_a_car() throws Exception {
 
         // arrange
-        given(carService.addCar(new Car("test", "test"))).willReturn(new Car("test", "test"));
+        given(carService.addCarDetails(new Car("test", "test"))).willReturn(new Car("test", "test"));
 
         // act and assert
         Car car = new Car("test", "test");
@@ -72,7 +72,7 @@ public class CarControllerTests {
                .andExpect(status().isCreated());
 
         // verify
-        verify(carService).addCar(new Car("test", "test"));
+        verify(carService).addCarDetails(new Car("test", "test"));
     }
 
     public static String asJsonString(final Object obj) {
