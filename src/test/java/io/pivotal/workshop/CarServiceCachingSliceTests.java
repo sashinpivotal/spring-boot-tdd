@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 
 // In order to use Spring caching, we need Spring context
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes={SpringBootTddApplication.class})
+@ContextConfiguration(classes={SpringBootTddApplication.class, CarServiceCache.class})
 public class CarServiceCachingSliceTests {
 
     @Autowired
