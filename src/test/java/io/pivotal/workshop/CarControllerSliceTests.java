@@ -74,7 +74,7 @@ public class CarControllerSliceTests {
         // verify
         verify(carService).addCarDetails(new Car("test", "test"));
     }
-    
+    // test
     public static String asJsonString(final Object obj) {
         try {
             final ObjectMapper mapper = new ObjectMapper();
