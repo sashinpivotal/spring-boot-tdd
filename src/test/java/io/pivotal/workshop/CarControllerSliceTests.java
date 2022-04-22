@@ -35,7 +35,7 @@ public class CarControllerSliceTests {
         // act & assert
         mockMvc.perform(get("/cars/hyundai"))
                .andExpect(status().isOk())
-               .andExpect(jsonPath("name").value("hyundai1xxx"))
+               .andExpect(jsonPath("name").value("hyundai1"))
                .andExpect(jsonPath("type").value("hybrid"));
 
         // verify that dependency is invoked
