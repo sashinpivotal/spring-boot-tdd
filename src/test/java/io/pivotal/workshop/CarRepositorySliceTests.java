@@ -17,7 +17,7 @@ public class CarRepositorySliceTests {
     private TestEntityManager testEntityManager;
 
     @Test
-    public void findByName_should_return_car_given_valid_car() throws Exception {
+    public void findByName_should_return_car_from_database() throws Exception {
 
         // arrange
         testEntityManager.persistAndFlush(new Car("camry", "regular"));
@@ -31,7 +31,7 @@ public class CarRepositorySliceTests {
     }
 
     @Test
-    public void findByName_should_return_null_given_invalid_car() throws Exception {
+    public void findByName_should_return_null_when_database_does_not_have_it() throws Exception {
         Car car = carRepository.findByName("camry");
         assertThat(car).isEqualTo(null);
     }
